@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Survey analysis: Christian Relationships</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="analysis.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <h1>Survey analysis</h1>
+      <p>What young Christians told us about relationships, turned into patterns you can act on.</p>
+      <div class="pages" aria-label="Analysis pages">
+        <a href="analysis.html" aria-current="page">Overview</a>
+        <a href="patterns.html">Patterns (deeper)</a>
+      </div>
+    </div>
+  </header>
+
+  <nav id="snav" class="snav" hidden aria-label="Sections">
+    <div class="wrap">
+      <a href="#sec-overview">Key findings</a>
+      <a href="#sec-who">Who answered</a>
+      <a href="#sec-stance">Where they stand</a>
+      <a href="#sec-choices">Priorities</a>
+      <a href="#sec-compare">Compare groups</a>
+      <a href="#sec-words">In their own words</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="load" class="card"></section>
+
+    <div id="dash" hidden>
+      <div id="banner"></div>
+
+      <section class="card filters" id="filters" aria-label="Filters">
+        <strong>Look at everyone, or narrow down:</strong>
+        <label>Age <select id="f_age_range"></select></label>
+        <label>Relationship <select id="f_rel_group"></select></label>
+        <label>Church involvement <select id="f_involve_group"></select></label>
+        <span class="note" id="filterNote"></span>
+      </section>
+
+      <section id="sec-overview">
+        <h2>Key findings</h2>
+        <div id="cards" class="stats"></div>
+        <ul id="findings" class="findings"></ul>
+      </section>
+
+      <section id="sec-who">
+        <h2>Who answered</h2>
+        <div id="who" class="grid2"></div>
+      </section>
+
+      <section id="sec-stance">
+        <h2>Where they stand</h2>
+        <p class="note">Each bar shows how people responded to a statement, from strongly disagree to strongly agree.</p>
+        <div class="controls">
+          <label>Sort by
+            <select id="sortStance">
+              <option value="agree">Most agreed first</option>
+              <option value="split">Most divided first</option>
+              <option value="order">Survey order</option>
+            </select>
+          </label>
+        </div>
+        <div id="legend" class="legend"></div>
+        <div id="stance" class="card"></div>
+        <div id="church" class="card"></div>
+      </section>
+
+      <section id="sec-choices">
+        <h2>Priorities and patterns</h2>
+        <p class="note">Percentages are the share of people who answered each question and picked that option.</p>
+        <div id="choices" class="grid2"></div>
+      </section>
+
+      <section id="sec-compare">
+        <h2>Compare groups</h2>
+        <p class="note">Do different kinds of people think differently? Groups with fewer than 5 answers are dimmed because they can mislead. This section ignores the filters above.</p>
+        <div class="controls">
+          <label>Question <select id="cmpQ"></select></label>
+          <label>Compare by <select id="cmpBy"></select></label>
+        </div>
+        <div id="compare" class="card"></div>
+      </section>
+
+      <section id="sec-words">
+        <h2>In their own words</h2>
+        <p class="note">Themes come from keyword matching, so treat them as a map to start reading from, not a verdict. Click a theme or word to see the actual answers.</p>
+        <div class="controls">
+          <label>Question <select id="tq"></select></label>
+          <label>Search <input type="search" id="tsearch" class="field" placeholder="Find a word or phrase"></label>
+          <button type="button" class="btn small" id="tclear">Clear</button>
+        </div>
+        <div class="grid2">
+          <div class="card"><h3>Themes</h3><div id="themes"></div></div>
+          <div class="card"><h3>Frequent words</h3><div id="words" class="chips"></div></div>
+        </div>
+        <h3 id="qhead"></h3>
+        <div id="quotes"></div>
+        <button type="button" class="btn secondary" id="more" hidden>Show more</button>
+      </section>
+
+      <section class="actions">
+        <button type="button" class="btn primary" id="btnPrint">Print or save as PDF</button>
+        <button type="button" class="btn secondary" id="btnCsv">Download key numbers (CSV)</button>
+      </section>
+    </div>
+  </main>
+  <script src="data.js"></script>
+  <script src="analysis.js"></script>
+</body>
+</html>

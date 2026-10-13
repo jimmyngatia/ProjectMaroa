@@ -8,6 +8,10 @@
 const SHEET_NAME = "Responses";
 const MAX_CELL_LENGTH = 5000;
 
+// Passcode for the analysis page. Change this to a long secret of your own,
+// then redeploy (Deploy > Manage deployments > Edit > New version).
+const ANALYSIS_KEY = "CHANGE-THIS-TO-A-LONG-SECRET";
+
 function doPost(e) {
   const lock = LockService.getScriptLock();
   try {
@@ -57,8 +61,30 @@ function doPost(e) {
   }
 }
 
-// Visiting the URL in a browser shows this, which is handy for checking the deployment.
-function doGet() {
+// Visiting the URL in a browser shows a status message (handy for checking the deployment).
+// With ?action=export&key=YOUR_PASSCODE it returns the responses for the analysis page.
+// The optional contact column is never included.
+function doGet(e) {
+  const p = (e && e.parameter) || {};
+  if (p.action === "export") {
+    if (ANALYSIS_KEY === "CHANGE-THIS-TO-A-LONG-SECRET" || p.key !== ANALYSIS_KEY) {
+      return reply({ ok: false, error: "Not authorised" });
+    }
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+    if (!sheet || sheet.getLastRow() < 2) return reply({ ok: true, headers: [], rows: [] });
+    const values = sheet.getDataRange().getValues();
+    const headers = values[0];
+    const keep = [];
+    headers.forEach(function (h, i) {
+      if (!/followup_contact$/.test(String(h))) keep.push(i);
+    });
+    const rows = values.slice(1).map(function (r) {
+      return keep.map(function (i) {
+        return r[i] instanceof Date ? r[i].toISOString() : r[i];
+      });
+    });
+    return reply({ ok: true, headers: keep.map(function (i) { return headers[i]; }), rows: rows });
+  }
   return reply({ ok: true, message: "Survey endpoint is running." });
 }
 
