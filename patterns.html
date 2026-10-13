@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Patterns: Christian Relationships survey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="analysis.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <h1>Patterns</h1>
+      <p>Who thinks what, and which answers go together. Deeper analysis across everything people told us.</p>
+      <div class="pages" aria-label="Analysis pages">
+        <a href="analysis.html">Overview</a>
+        <a href="patterns.html" aria-current="page">Patterns (deeper)</a>
+      </div>
+    </div>
+  </header>
+
+  <nav id="snav" class="snav" hidden aria-label="Sections">
+    <div class="wrap">
+      <a href="#sec-found">Patterns we found</a>
+      <a href="#sec-group">Explore a group</a>
+      <a href="#sec-cross">Compare two questions</a>
+      <a href="#sec-beliefs">Beliefs that go together</a>
+      <a href="#sec-types">Types of respondents</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="load" class="card"></section>
+
+    <div id="dash" hidden>
+      <div id="banner"></div>
+
+      <details class="card howto">
+        <summary>How to read this page (30 seconds)</summary>
+        <ul>
+          <li><b>“More likely”</b> compares one group with everyone else. For example, 71% of one group agree with a statement, against 42% of everyone else.</li>
+          <li><b>Likely real</b> means the difference is big enough that it is unlikely to be luck, even after allowing for how many comparisons we ran. <b>Worth watching</b> looks real but could still be chance. <b>Hint</b> is only a nudge to look closer.</li>
+          <li>We only compare groups with at least 5 people. Small groups swing wildly, so treat anything based on under 15 or 20 people as a lead to investigate, not a conclusion.</li>
+          <li>These patterns show what goes together, not what causes what. Being actively involved in church may not <i>cause</i> a view; the two may simply travel together.</li>
+        </ul>
+      </details>
+
+      <section id="sec-found">
+        <h2>Patterns we found</h2>
+        <p class="note" id="foundNote"></p>
+        <div class="controls">
+          <label>Topic
+            <select id="fCat">
+              <option value="all">Everything</option>
+              <option value="status">Who they are (relationship stage, church life)</option>
+              <option value="beliefs">Beliefs (agree / disagree)</option>
+              <option value="choices">Priorities and choices</option>
+              <option value="words">Themes in their writing</option>
+            </select>
+          </label>
+          <label>Show
+            <select id="fMode">
+              <option value="best">Best patterns</option>
+              <option value="likely">Likely real only</option>
+            </select>
+          </label>
+        </div>
+        <div id="found"></div>
+        <button type="button" class="btn secondary" id="foundMore" hidden>Show more</button>
+      </section>
+
+      <section id="sec-group">
+        <h2>Explore a group</h2>
+        <p class="note">Build a group by tapping choices, for example <i>21–23 + actively involved + serious or engaged</i>. Within a row, tapping several choices means “any of these”; across rows it means “and”. You'll see who they are and how they answer differently from everyone else.</p>
+        <div id="segChips" class="card"></div>
+        <div id="segOut"></div>
+      </section>
+
+      <section id="sec-cross">
+        <h2>Compare two questions</h2>
+        <p class="note">Pick any two things and see how they line up, such as church involvement against relationship stage.</p>
+        <div class="controls">
+          <label>Rows <select id="xRow"></select></label>
+          <label>Columns <select id="xCol"></select></label>
+          <label>Show
+            <select id="xShow">
+              <option value="row">% of each row</option>
+              <option value="col">% of each column</option>
+              <option value="n">Number of people</option>
+            </select>
+          </label>
+        </div>
+        <div id="crossOut" class="card"></div>
+      </section>
+
+      <section id="sec-beliefs">
+        <h2>Beliefs that go together</h2>
+        <p class="note">People who agree with one statement often agree (or disagree) with another. This shows those links.</p>
+        <div id="beliefs"></div>
+      </section>
+
+      <section id="sec-types">
+        <h2>Types of respondents</h2>
+        <p class="note">The page groups people whose agree/disagree answers look alike, without using age, church life or anything else. Then it describes who ended up in each group. Read the beliefs and give each group a name that fits.</p>
+        <div class="controls">
+          <label>Number of groups
+            <select id="kSel"><option>2</option><option selected>3</option><option>4</option></select>
+          </label>
+        </div>
+        <div id="types"></div>
+      </section>
+
+      <section class="actions">
+        <button type="button" class="btn primary" id="btnPrint">Print or save as PDF</button>
+        <button type="button" class="btn secondary" id="btnCsv">Download patterns (CSV)</button>
+      </section>
+    </div>
+  </main>
+  <script src="data.js"></script>
+  <script src="patterns.js"></script>
+</body>
+</html>
